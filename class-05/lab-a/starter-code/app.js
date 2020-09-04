@@ -117,11 +117,25 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function multiplyArray(multArr) { //eslint-disable-line
+  var multAns = 0;
+  var multStr = "The numbers ";
+  var i = 0;
 
+  while(multArr.length) {
+    i = multArr.shift();
+
+    multAns = multiply(multAns, i)[0];  // avoiding the * operator on numbers per the instructions
+    multStr += i+",";
+  }
+
+  multStr.slice(0, multStr.length-1); // strip out the last comma
+  multStr += " have a product of "+multAns+".";
+
+  return [multAns, multStr];
 }
 
 // Here is the test for multiplyArray(); uncomment it to run it
-// testMultiplyArray(testArray);
+testMultiplyArray(testArray);
 
 // Once you get the test passing, do an a-c-p cycle and synchronize the code between GitHub and your laptop. 
 
