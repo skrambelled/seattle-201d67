@@ -87,7 +87,7 @@ function sumArray(sumArr) { //eslint-disable-line
   var i = 0;
 
   while(sumArr.length) {
-    i = sumArr.pop();
+    i = sumArr.shift();
 
     sumAns = sum(sumAns, i)[0];  // avoiding the + operator on numbers per the instructions
     sumStr += i+",";
