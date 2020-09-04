@@ -86,15 +86,26 @@ function sumArray(sumArr) { //eslint-disable-line
   var sumStr = "";
   var i = 0;
 
-  while(sumArr.length) {
-    i = sumArr.shift();
-
-    sumAns = sum(sumAns, i)[0];  // avoiding the + operator on numbers per the instructions
-    sumStr += i+",";
+  var arrayCopy = [];
+  for(var j = 0; j<sumArr.length; j++)  {
+    arrayCopy[j] = sumArr[j];
   }
 
-  sumStr.slice(0, sumStr.length-1); // strip out the last comma
+  while(arrayCopy.length) {
+    i = arrayCopy.shift();
+
+    sumAns = sum(sumAns, i)[0];  // avoiding the + operator on numbers per the instructions
+
+    sumStr += i;
+    if(arrayCopy.length)
+      sumStr += ",";
+  }
+
   sumStr += " was passed in as an array of numbers, and "+sumAns+" is their sum.";
+
+  console.log("sumArray");
+  console.log(sumAns);
+  console.log(sumStr);
 
   return [sumAns, sumStr];
 }
@@ -117,18 +128,26 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function multiplyArray(multArr) { //eslint-disable-line
-  var multAns = 0;
+  var multAns = 1; // initial at 1, so we dont multiply by 0 and negate the whole operation
   var multStr = "The numbers ";
   var i = 0;
 
-  while(multArr.length) {
-    i = multArr.shift();
-
-    multAns = multiply(multAns, i)[0];  // avoiding the * operator on numbers per the instructions
-    multStr += i+",";
+  // had to make a copy, cause array are passed by reference and then i am failing on .shift()
+  var arrayCopy = [];
+  for(let j = 0; j<multArr.length; j++)  {
+    arrayCopy[j] = multArr[j];
   }
 
-  multStr.slice(0, multStr.length-1); // strip out the last comma
+  while(arrayCopy.length) {
+    i = arrayCopy.shift();
+
+    multAns = multiply(multAns, i)[0];  // avoiding the * operator on numbers per the instructions
+
+    multStr += i;
+    if(arrayCopy.length)
+      multStr += ",";
+  }
+
   multStr += " have a product of "+multAns+".";
 
   return [multAns, multStr];
@@ -159,10 +178,10 @@ Test this function by hand in the console to get it working, and when you think 
 var testDynamicArray = [1,2,3,4,5]; //eslint-disable-line
 
 function multiplyAnyArray(dynamicArray) { //eslint-disable-line
-
+  return multiplyArray(dynamicArray); // hah, i already did this one!
 }
 
 // Here is the test for multiplyArray(); uncomment it to run it
-// testMultiplyAnyArray(testDynamicArray);
+testMultiplyAnyArray(testDynamicArray);
 
 // Once you get the test passing, do an a-c-p cycle and synchronize the code between GitHub and your laptop. You're done! Submit the link to the repo following the instructions in Canvas.
