@@ -103,10 +103,6 @@ function sumArray(sumArr) { //eslint-disable-line
 
   sumStr += " was passed in as an array of numbers, and "+sumAns+" is their sum.";
 
-  console.log("sumArray");
-  console.log(sumAns);
-  console.log(sumStr);
-
   return [sumAns, sumStr];
 }
 
